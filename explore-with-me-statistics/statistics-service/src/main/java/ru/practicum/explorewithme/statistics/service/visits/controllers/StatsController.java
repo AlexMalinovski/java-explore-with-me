@@ -1,4 +1,4 @@
-package ru.practicum.explorewithme.statistics.service.visits;
+package ru.practicum.explorewithme.statistics.service.visits.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;

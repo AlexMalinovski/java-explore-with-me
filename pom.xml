@@ -7,7 +7,7 @@
         <module>explore-with-me-statistics</module>
 		<module>explore-with-me-statistics/statistics-service</module>
 		<module>explore-with-me-statistics/statistics-lib-dto</module>
-		<module>explore-with-me-statistics/statistics-client-spring-boot-starter</module>
+		<module>explore-with-me-statistics/statistics-client</module>
         <module>exception-handler-spring-boot-starter</module>
     </modules>
 

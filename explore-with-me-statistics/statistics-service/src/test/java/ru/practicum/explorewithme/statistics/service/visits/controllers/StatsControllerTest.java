@@ -1,4 +1,4 @@
-package ru.practicum.explorewithme.statistics.service.visits;
+package ru.practicum.explorewithme.statistics.service.visits.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
@@ -9,6 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.practicum.explorewithme.statistics.lib.dto.CreateEndpointHitDto;
+import ru.practicum.explorewithme.statistics.service.visits.controllers.StatsController;
 import ru.practicum.explorewithme.statistics.service.visits.mappers.EndpointHitMapper;
 import ru.practicum.explorewithme.statistics.service.visits.mappers.ViewStatsMapper;
 import ru.practicum.explorewithme.statistics.service.visits.services.StatsService;

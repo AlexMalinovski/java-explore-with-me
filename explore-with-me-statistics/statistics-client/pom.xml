@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>statistics-client-spring-boot-starter</artifactId>
+    <artifactId>statistics-client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
