@@ -6,6 +6,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -14,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import ru.practicum.explorewithme.statistics.lib.dto.CreateEndpointHitDto;
+import ru.practicum.explorewithme.statistics.lib.dto.EndpointHitDto;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -57,14 +59,16 @@ class StatsClientTest {
                 .timestamp("2023-01-01 00:00:00")
                 .build();
         HttpEntity<CreateEndpointHitDto> expected = new HttpEntity<>(dto, defaultHeaders());
-        when(restTemplate.exchange(anyString(), any(HttpMethod.class), (HttpEntity<?>) any(HttpEntity.class), (Class<Object>) any()))
-                .thenReturn(ResponseEntity.status(HttpStatus.CREATED).body(new Object()));
+        ArgumentCaptor<ParameterizedTypeReference> captor = ArgumentCaptor.forClass(ParameterizedTypeReference.class);
+        when(restTemplate.exchange(anyString(), any(HttpMethod.class), (HttpEntity<?>) any(HttpEntity.class), any(ParameterizedTypeReference.class)))
+                .thenReturn(ResponseEntity.status(HttpStatus.CREATED).body(EndpointHitDto.builder().build()));
 
-        ResponseEntity<Object> actual = statsClient.postHit(dto.getApp(), dto.getUri(),
+        ResponseEntity<EndpointHitDto> actual = statsClient.postHit(dto.getApp(), dto.getUri(),
                 dto.getIp(), LocalDateTime.from(DATE_FORMATTER.parse(dto.getTimestamp())));
 
         assertNotNull(actual);
-        verify(restTemplate).exchange("/hit", HttpMethod.POST, expected, Object.class);
+        ;
+        verify(restTemplate).exchange(eq("/hit"), eq(HttpMethod.POST), eq(expected), (ParameterizedTypeReference<Object>) any());
     }
 
     @Test
@@ -81,12 +85,12 @@ class StatsClientTest {
                 "uris[]", uris.toArray()
         );
         ArgumentCaptor<Map<String, Object>> captor = ArgumentCaptor.forClass(Map.class);
-        when(restTemplate.exchange(anyString(), any(HttpMethod.class), (HttpEntity<?>) any(HttpEntity.class), (Class<Object>) any(), anyMap()))
+        when(restTemplate.exchange(anyString(), any(HttpMethod.class), (HttpEntity<?>) any(HttpEntity.class), (ParameterizedTypeReference<Object>) any(), anyMap()))
                 .thenReturn(ResponseEntity.status(HttpStatus.OK).body(new Object()));
 
         statsClient.getStats(start, end, uris, false);
 
-        verify(restTemplate).exchange(eq(expectedPath), eq(HttpMethod.GET), eq(expectedHttpEntity), eq(Object.class), captor.capture());
+        verify(restTemplate).exchange(eq(expectedPath), eq(HttpMethod.GET), eq(expectedHttpEntity), (ParameterizedTypeReference<Object>) any(), captor.capture());
         Map<String, Object> actualParameters = captor.getValue();
         assertEquals(expectedParameters.size(), actualParameters.size());
         assertEquals(expectedParameters.get("start"), actualParameters.get("start"));
