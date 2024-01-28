@@ -51,7 +51,7 @@ public class CompilationAdminController {
     @DeleteMapping("/{compId}")
     public ResponseEntity<Object> deleteCompilation(@PathVariable long compId) {
         compilationService.deleteCompilation(compId);
-        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     /**
