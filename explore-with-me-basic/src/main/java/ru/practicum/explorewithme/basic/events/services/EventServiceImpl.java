@@ -119,7 +119,10 @@ public class EventServiceImpl implements EventService {
     @NonNull
     @Transactional
     public Event updateEvent(long userId, long eventId, @NonNull UpdateEventUserRequest request) {
-        Event event = getEventById(userId, eventId);
+        Event event = getEventById(eventId);
+        if (event.getInitiator().getId() != userId) {
+            throw new ForbiddenException("User is not event initiator");
+        }
         LocalDateTime now = LocalDateTime.now();
         if (event.getEventDate().minusHours(2).isBefore(now)) {
             throw new ForbiddenException(
@@ -228,7 +231,6 @@ public class EventServiceImpl implements EventService {
         }
         return eventStream.collect(Collectors.toList());
     }
-
 
 
     @Override

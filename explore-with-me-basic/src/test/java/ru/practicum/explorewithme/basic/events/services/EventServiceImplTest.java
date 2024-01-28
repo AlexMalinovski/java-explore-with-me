@@ -32,6 +32,7 @@ import ru.practicum.explorewithme.basic.requests.mappers.ParticipationMapper;
 import ru.practicum.explorewithme.basic.requests.models.Participation;
 import ru.practicum.explorewithme.basic.requests.models.QParticipation;
 import ru.practicum.explorewithme.basic.requests.repositories.ParticipationRepository;
+import ru.practicum.explorewithme.basic.users.models.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -149,38 +150,38 @@ class EventServiceImplTest {
 
     @Test
     void updateEvent_user_ifEventNotFound_thenThrowNotFoundException() {
-        when(eventRepository.findByIdAndInitiator_Id(anyLong(), anyLong())).thenReturn(Optional.empty());
+        when(eventRepository.findEventById(anyLong())).thenReturn(Optional.empty());
 
         assertThrows(NotFoundException.class, () -> eventService.updateEvent(1L, 2L, UpdateEventUserRequest.builder().build()));
 
-        verify(eventRepository).findByIdAndInitiator_Id(2L, 1L);
+        verify(eventRepository).findEventById(2L);
     }
 
     @Test
     void updateEvent_user_ifEventDateAnon_thenThrowForbiddenException() {
-        Event expected = Event.builder().eventDate(LocalDateTime.now().plusHours(2)).build();
-        when(eventRepository.findByIdAndInitiator_Id(anyLong(), anyLong())).thenReturn(Optional.of(expected));
+        Event expected = Event.builder().eventDate(LocalDateTime.now().plusHours(2)).initiator(User.builder().id(1L).build()).build();
+        when(eventRepository.findEventById(anyLong())).thenReturn(Optional.of(expected));
 
         assertThrows(ForbiddenException.class, () -> eventService.updateEvent(1L, 2L, UpdateEventUserRequest.builder().build()));
 
-        verify(eventRepository).findByIdAndInitiator_Id(2L, 1L);
+        verify(eventRepository).findEventById(2L);
     }
 
     @Test
     void updateEvent_user_ifEventNotPendingOrCancelled_thenThrowForbiddenException() {
-        Event expected = Event.builder().eventDate(LocalDateTime.now().plusYears(2)).state(EventState.PUBLISHED).build();
-        when(eventRepository.findByIdAndInitiator_Id(anyLong(), anyLong())).thenReturn(Optional.of(expected));
+        Event expected = Event.builder().eventDate(LocalDateTime.now().plusYears(2)).state(EventState.PUBLISHED).initiator(User.builder().id(1L).build()).build();
+        when(eventRepository.findEventById(anyLong())).thenReturn(Optional.of(expected));
 
         assertThrows(ForbiddenException.class, () -> eventService.updateEvent(1L, 2L, UpdateEventUserRequest.builder().build()));
 
-        verify(eventRepository).findByIdAndInitiator_Id(2L, 1L);
+        verify(eventRepository).findEventById(2L);
     }
 
     @Test
     void updateEvent_user() {
-        Event expected = Event.builder().eventDate(LocalDateTime.now().plusYears(2)).state(EventState.PENDING).build();
+        Event expected = Event.builder().eventDate(LocalDateTime.now().plusYears(2)).state(EventState.PENDING).initiator(User.builder().id(1L).build()).build();
         UpdateEventUserRequest request = UpdateEventUserRequest.builder().build();
-        when(eventRepository.findByIdAndInitiator_Id(anyLong(), anyLong())).thenReturn(Optional.of(expected));
+        when(eventRepository.findEventById(anyLong())).thenReturn(Optional.of(expected));
         when(eventMapper.updateEvent(any(Event.class), any(UpdateEventUserRequest.class))).thenReturn(expected);
         when(eventRepository.save(expected)).thenReturn(expected);
 
@@ -188,7 +189,7 @@ class EventServiceImplTest {
 
         assertNotNull(actual);
         assertEquals(expected, actual);
-        verify(eventRepository).findByIdAndInitiator_Id(2L, 1L);
+        verify(eventRepository).findEventById(2L);
         verify(eventMapper).updateEvent(expected, request);
         verify(eventRepository).save(expected);
     }
