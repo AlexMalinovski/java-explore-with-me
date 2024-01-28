@@ -66,7 +66,7 @@ public class EventPrivateController {
                 .build();
         LocalDateTime now = LocalDateTime.now();
         if (event.getEventDate().minusHours(2).isBefore(now)) {
-            throw new BadRequestException( //требование postman. По спецификации д.б 409 forbidden
+            throw new BadRequestException(
                     String.format("Field: eventDate. Error: должно содержать дату, которая еще не наступила. Value: %s", dto.getEventDate()));
         }
         Event created = eventService.createEvent(event);
@@ -130,7 +130,7 @@ public class EventPrivateController {
         Optional.ofNullable(request.getEventDate())
                 .ifPresent(date -> {
                     if (date.minusHours(2).isBefore(LocalDateTime.now())) {
-                        throw new BadRequestException( // требование постман. по спецификации 409 forbidden
+                        throw new BadRequestException(
                                 String.format("Field: eventDate. Error: должно содержать дату, которая еще не наступила. Value: %s",
                                         date.format(DateTimeFormatter.ISO_DATE_TIME)));
                     }
