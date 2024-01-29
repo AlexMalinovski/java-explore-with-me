@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
 import java.time.ZoneId;
@@ -20,15 +21,15 @@ import java.util.Map;
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProblemDetail {
-    private static final DateTimeFormatter ISO_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSxxx");
+    private static final DateTimeFormatter ISO_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private final String timestamp;
     private final int status;
-    private final String error;
+    private final String reason;
     private final String path;
     @Nullable
     private String message;
     @Nullable
-    private Map<String, Object> properties;
+    private Map<String, Object> errors;
 
     public static ProblemDetail withCustomError(HttpStatus httpStatus, String path, String error) {
         ZoneId zoneUtc = ZoneId.of("UTC");
@@ -44,12 +45,14 @@ public class ProblemDetail {
         ZoneId zoneUtc = ZoneId.of("UTC");
         this.timestamp = ZonedDateTime.now(zoneUtc).format(ISO_FORMATTER);
         this.status = httpStatus.value();
-        this.error = httpStatus.getReasonPhrase();
+        this.reason = httpStatus.getReasonPhrase();
         this.path = path;
     }
 
-    public void setProperty(String name, @Nullable Object value) {
-        this.properties = this.properties != null ? this.properties : new LinkedHashMap<>();
-        this.properties.put(name, value);
+    public void setProperty(@NonNull String name, @Nullable Object value) {
+        if (this.errors == null) {
+            this.errors = new LinkedHashMap<>();
+        }
+        this.errors.put(name, value);
     }
 }

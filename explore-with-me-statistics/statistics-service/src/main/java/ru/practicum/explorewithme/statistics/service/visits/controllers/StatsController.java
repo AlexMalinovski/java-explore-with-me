@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ru.practicum.exceptions.api.BadRequestException;
 import ru.practicum.explorewithme.statistics.lib.dto.CreateEndpointHitDto;
 import ru.practicum.explorewithme.statistics.lib.dto.EndpointHitDto;
 import ru.practicum.explorewithme.statistics.lib.dto.ViewStatsDto;
@@ -59,6 +60,9 @@ public class StatsController {
             @RequestParam(required = false) List<String> uris,
             @RequestParam(required = false, defaultValue = "false") boolean unique) {
 
+        if (start.equals(end) || start.isAfter(end)) {
+            throw new BadRequestException("Start can be before end");
+        }
         List<ViewStats> viewStats = statsService.getViewStats(start, end, uris, unique);
         return ResponseEntity.ok(viewStatsMapper.mapToViewStatsDto(viewStats));
     }

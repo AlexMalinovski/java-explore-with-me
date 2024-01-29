@@ -13,6 +13,8 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 
+import java.time.Duration;
+
 @Configuration
 @ConditionalOnProperty(prefix = "statistics-server", name = "url")
 public class StatsClientAutoConfig {
@@ -23,6 +25,7 @@ public class StatsClientAutoConfig {
         return builder
                 .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl))
                 .requestFactory(HttpComponentsClientHttpRequestFactory::new)
+                .setConnectTimeout(Duration.ofSeconds(5))
                 .build();
     }
 
