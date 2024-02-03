@@ -9,8 +9,6 @@ import ru.practicum.explorewithme.basic.locations.dto.PlaceFilterRequest;
 import ru.practicum.explorewithme.basic.locations.enums.PlaceSort;
 import ru.practicum.explorewithme.basic.locations.models.QPlace;
 
-import java.util.Locale;
-
 @Mapper(componentModel = "spring")
 public abstract class PlaceFilterMapper {
 
