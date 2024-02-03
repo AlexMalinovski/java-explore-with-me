@@ -655,13 +655,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/1/places",
+							"raw": "{{baseUrl}}/users/134/places",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"users",
-								"1",
+								"134",
 								"places"
 							]
 						}
@@ -685,7 +685,7 @@
 									"pm.test(\"Test user 'id' field\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData).to.have.property('id');\r",
-									"    pm.expect(jsonData.id, '\"id\" must be \"1\"').to.eql(1);\r",
+									"    pm.expect(jsonData.id, '\"id\" must be \"134\"').to.eql(134);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -786,13 +786,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/1/places",
+							"raw": "{{baseUrl}}/users/134/places",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"users",
-								"1",
+								"134",
 								"places"
 							]
 						}
@@ -1279,10 +1279,10 @@
 									"pm.test(\"Status code is 201\", function () {\r",
 									"    pm.expect(pm.response.code).to.be.oneOf([201]);\r",
 									"});\r",
-									"pm.test(\"Test place 'id' field\", function () {\r",
+									"pm.test(\"Test category 'id' field\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData).to.have.property('id');\r",
-									"    pm.expect(jsonData.id, '\"id\" must be \"1\"').to.eql(1);\r",
+									"    pm.expect(jsonData.id, '\"id\" must be \"119\"').to.eql(119);\r",
 									"});\r",
 									""
 								],
@@ -1295,7 +1295,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"category\"\r\n}",
+							"raw": "{\r\n    \"name\": \"category 2382874\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1325,10 +1325,10 @@
 									"pm.test(\"Status code is 201\", function () {\r",
 									"    pm.expect(pm.response.code).to.be.oneOf([201]);\r",
 									"});\r",
-									"pm.test(\"Test place 'id' field\", function () {\r",
+									"pm.test(\"Test event 'id' field\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData).to.have.property('id');\r",
-									"    pm.expect(jsonData.id, '\"id\" must be \"1\"').to.eql(1);\r",
+									"    pm.expect(jsonData.id, '\"id\" must be \"103\"').to.eql(103);\r",
 									"});\r",
 									""
 								],
@@ -1341,7 +1341,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"event1\",\r\n    \"annotation\": \"dfvdkjfblkj sdfkbvksjd slkdfvbj sdfhvb\",\r\n    \"category\": 1,\r\n    \"description\": \"dfjvbsdklfj skjdfnvks sdkhvbkjs kjhbvkjrh\",\r\n    \"eventDate\": \"2100-01-01 00:00:00\",\r\n    \"location\": {\r\n        \"lat\": 55.751589,\r\n        \"lon\": 37.615573\r\n    }\r\n\r\n}",
+							"raw": "{\r\n    \"title\": \"event1\",\r\n    \"annotation\": \"dfvdkjfblkj sdfkbvksjd slkdfvbj sdfhvb\",\r\n    \"category\": 119,\r\n    \"description\": \"dfjvbsdklfj skjdfnvks sdkhvbkjs kjhbvkjrh\",\r\n    \"eventDate\": \"2100-01-01 00:00:00\",\r\n    \"location\": {\r\n        \"lat\": 55.751589,\r\n        \"lon\": 37.615573\r\n    }\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1391,14 +1391,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/admin/events/1",
+							"raw": "{{baseUrl}}/admin/events/103",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
 								"events",
-								"1"
+								"103"
 							]
 						}
 					},
@@ -1466,7 +1466,7 @@
 									"pm.test(\"Test event[0] 'id' field\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData[0]).to.have.property('id');\r",
-									"    pm.expect(jsonData[0].id, '\"id\" must be 1').to.eql(1);\r",
+									"    pm.expect(jsonData[0].id, '\"id\" must be 103').to.eql(103);\r",
 									"});"
 								],
 								"type": "text/javascript"
