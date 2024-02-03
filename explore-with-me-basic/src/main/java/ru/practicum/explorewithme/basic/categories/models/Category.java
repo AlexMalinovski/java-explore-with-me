@@ -30,7 +30,7 @@ public class Category {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    @Column(name = "name_lower", nullable = false, length = 50, unique = true)
+    @Column(name = "name_lower", nullable = false, length = 50)
     private String nameLowercase; // добавлено для совместимости с H2(не поддерживает function indexes)
 
     @PrePersist

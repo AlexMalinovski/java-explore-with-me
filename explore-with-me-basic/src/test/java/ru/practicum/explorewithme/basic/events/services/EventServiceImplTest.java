@@ -22,6 +22,7 @@ import ru.practicum.explorewithme.basic.events.dto.UpdateEventUserRequest;
 import ru.practicum.explorewithme.basic.events.enums.EventSort;
 import ru.practicum.explorewithme.basic.events.enums.EventState;
 import ru.practicum.explorewithme.basic.events.enums.StateAction;
+import ru.practicum.explorewithme.basic.events.mappers.EventFilterMapper;
 import ru.practicum.explorewithme.basic.events.mappers.EventMapper;
 import ru.practicum.explorewithme.basic.events.models.Event;
 import ru.practicum.explorewithme.basic.events.models.QEvent;
@@ -71,6 +72,9 @@ class EventServiceImplTest {
 
     @Mock
     private StatsClientAdapter statsClientAdapter;
+
+    @Mock
+    private EventFilterMapper filterMapper;
 
     @InjectMocks
     EventServiceImpl eventService;
@@ -279,6 +283,7 @@ class EventServiceImplTest {
     void getEventsAdmin() {
         List<Event> expected = List.of(Event.builder().build());
         when(eventRepository.findByWithOffsetAndLimitFetch(any(BooleanExpression.class), anyInt(), anyInt())).thenReturn(expected);
+        when(filterMapper.mapToEventFilter(any(GetEventRequest.class))).thenReturn(Expressions.TRUE.isTrue());
 
         var actual = eventService.getEventsAdmin(GetEventRequest.builder().build(), 1, 2);
 
@@ -328,6 +333,7 @@ class EventServiceImplTest {
         when(eventRepository.findByWithOffsetAndLimitFetch(Expressions.TRUE.isTrue(), null, 0, 10))
                 .thenReturn(List.of(founded));
         when(statsClientAdapter.requestHitsForEvents(anyList())).thenReturn(Optional.of(Map.of(founded.getId(), 5L)));
+        when(filterMapper.mapToEventFilter(any(GetEventRequest.class))).thenReturn(Expressions.TRUE.isTrue());
 
         List<Event> actual = eventService.getEventsPublic(req, 0, 10);
 
@@ -345,6 +351,7 @@ class EventServiceImplTest {
         when(eventRepository.findByWithOffsetAndLimitFetch(Expressions.TRUE.isTrue(), null, 0, 10))
                 .thenReturn(founded);
         when(statsClientAdapter.requestHitsForEvents(anyList())).thenReturn(Optional.of(Map.of()));
+        when(filterMapper.mapToEventFilter(any(GetEventRequest.class))).thenReturn(Expressions.TRUE.isTrue());
 
         List<Event> actual = eventService.getEventsPublic(req, 0, 10);
 
@@ -362,6 +369,7 @@ class EventServiceImplTest {
         when(eventRepository.findByWithOffsetAndLimitFetch(any(BooleanExpression.class), any(OrderSpecifier.class), anyInt(), anyInt()))
                 .thenReturn(founded);
         when(statsClientAdapter.requestHitsForEvents(anyList())).thenReturn(Optional.of(Map.of()));
+        when(filterMapper.mapToEventFilter(any(GetEventRequest.class))).thenReturn(Expressions.TRUE.isTrue());
 
         List<Event> actual = eventService.getEventsPublic(req, 0, 10);
 
@@ -385,6 +393,7 @@ class EventServiceImplTest {
         when(statsClientAdapter.requestHitsForEvents(anyList())).thenReturn(Optional.of(
                 Map.of(1L, 10L,
                         2L, 20L)));
+        when(filterMapper.mapToEventFilter(any(GetEventRequest.class))).thenReturn(Expressions.TRUE.isTrue());
 
         List<Event> actual = eventService.getEventsPublic(req, 0, 10);
 

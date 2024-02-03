@@ -31,7 +31,9 @@ public class AppConfig {
                 new AbstractMap.SimpleEntry<>("uq_compilations_title_lower", ErrorData.create("Compilation title must be unique.", HttpStatus.CONFLICT)),
                 new AbstractMap.SimpleEntry<>("compilations_title_unique_idx", ErrorData.create("Compilation title must be unique.", HttpStatus.CONFLICT)),
                 new AbstractMap.SimpleEntry<>("fk_events_compilations_event_id", ErrorData.create("Event was not found", HttpStatus.BAD_REQUEST)),
-                new AbstractMap.SimpleEntry<>("fk_events_compilations_compilation_id", ErrorData.create("Compilation was not found", HttpStatus.BAD_REQUEST))
+                new AbstractMap.SimpleEntry<>("fk_events_compilations_compilation_id", ErrorData.create("Compilation was not found", HttpStatus.BAD_REQUEST)),
+                new AbstractMap.SimpleEntry<>("uq_places_name_lower", ErrorData.create("Place name must be unique.", HttpStatus.CONFLICT)),
+                new AbstractMap.SimpleEntry<>("places_name_unique_idx", ErrorData.create("Place name must be unique.", HttpStatus.CONFLICT))
         );
         return new EwmExceptionHandler(dbConstraintsErr);
     }
