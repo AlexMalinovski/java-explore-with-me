@@ -655,13 +655,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/134/places",
+							"raw": "{{baseUrl}}/users/136/places",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"users",
-								"134",
+								"136",
 								"places"
 							]
 						}
@@ -685,7 +685,7 @@
 									"pm.test(\"Test user 'id' field\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData).to.have.property('id');\r",
-									"    pm.expect(jsonData.id, '\"id\" must be \"134\"').to.eql(134);\r",
+									"    pm.expect(jsonData.id, '\"id\" must be \"136\"').to.eql(136);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -786,13 +786,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/134/places",
+							"raw": "{{baseUrl}}/users/136/places",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"users",
-								"134",
+								"136",
 								"places"
 							]
 						}
@@ -1282,7 +1282,7 @@
 									"pm.test(\"Test category 'id' field\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData).to.have.property('id');\r",
-									"    pm.expect(jsonData.id, '\"id\" must be \"119\"').to.eql(119);\r",
+									"    pm.expect(jsonData.id, '\"id\" must be \"121\"').to.eql(121);\r",
 									"});\r",
 									""
 								],
@@ -1328,7 +1328,7 @@
 									"pm.test(\"Test event 'id' field\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData).to.have.property('id');\r",
-									"    pm.expect(jsonData.id, '\"id\" must be \"103\"').to.eql(103);\r",
+									"    pm.expect(jsonData.id, '\"id\" must be \"106\"').to.eql(106);\r",
 									"});\r",
 									""
 								],
@@ -1341,7 +1341,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"event1\",\r\n    \"annotation\": \"dfvdkjfblkj sdfkbvksjd slkdfvbj sdfhvb\",\r\n    \"category\": 119,\r\n    \"description\": \"dfjvbsdklfj skjdfnvks sdkhvbkjs kjhbvkjrh\",\r\n    \"eventDate\": \"2100-01-01 00:00:00\",\r\n    \"location\": {\r\n        \"lat\": 55.751589,\r\n        \"lon\": 37.615573\r\n    }\r\n\r\n}",
+							"raw": "{\r\n    \"title\": \"event1\",\r\n    \"annotation\": \"dfvdkjfblkj sdfkbvksjd slkdfvbj sdfhvb\",\r\n    \"category\": 121,\r\n    \"description\": \"dfjvbsdklfj skjdfnvks sdkhvbkjs kjhbvkjrh\",\r\n    \"eventDate\": \"2100-01-01 00:00:00\",\r\n    \"location\": {\r\n        \"lat\": 55.751589,\r\n        \"lon\": 37.615573\r\n    }\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1391,14 +1391,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/admin/events/103",
+							"raw": "{{baseUrl}}/admin/events/106",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
 								"events",
-								"103"
+								"106"
 							]
 						}
 					},
@@ -1466,7 +1466,7 @@
 									"pm.test(\"Test event[0] 'id' field\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData[0]).to.have.property('id');\r",
-									"    pm.expect(jsonData[0].id, '\"id\" must be 103').to.eql(103);\r",
+									"    pm.expect(jsonData[0].id, '\"id\" must be 106').to.eql(106);\r",
 									"});"
 								],
 								"type": "text/javascript"
