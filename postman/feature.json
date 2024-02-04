@@ -1,0 +1,1683 @@
+{
+	"info": {
+		"_postman_id": "15c9453c-e576-41ca-b3f7-aa709b67fef0",
+		"name": "Explore with me - feature",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31389328"
+	},
+	"item": [
+		{
+			"name": "Validation",
+			"item": [
+				{
+					"name": "Place create admin fail no name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"jsdfhvb sdkjfnvlkjsd skjvnlknvslfv sfvlb\",\r\n    \"radius\": 1000,\r\n    \"location\":{\r\n        \"lat\": 55.254,\r\n        \"lon\": 45.128\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place create admin fail empty name Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"jsdfhvb sdkjfnvlkjsd skjvnlknvslfv sfvlb\",\r\n    \"radius\": 1000,\r\n    \"location\":{\r\n        \"lat\": 55.254,\r\n        \"lon\": 45.128\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place create admin fail no description",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"place1\",\r\n    \"radius\": 1000,\r\n    \"location\":{\r\n        \"lat\": 55.254,\r\n        \"lon\": 45.128\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place create admin fail empty description",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"place1\",\r\n    \"radius\": 1000,\r\n    \"description\": \"\",\r\n    \"location\":{\r\n        \"lat\": 55.254,\r\n        \"lon\": 45.128\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place create admin fail no radius",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"place1\",\r\n    \"description\": \"sdhbvsd dvbsvb evlhblev weybvebv ybry\",\r\n    \"location\":{\r\n        \"lat\": 55.254,\r\n        \"lon\": 45.128\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place create admin fail zero radius",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"place1\",\r\n    \"radius\": 0,\r\n    \"description\": \"sdhbvsd dvbsvb evlhblev weybvebv ybry\",\r\n    \"location\":{\r\n        \"lat\": 55.254,\r\n        \"lon\": 45.128\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place create admin fail no Location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"place1\",\r\n    \"radius\": 1000,\r\n    \"description\": \"sdhbvsd dvbsvb evlhblev weybvebv ybry\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place create admin fail Location without lat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"place1\",\r\n    \"radius\": 1000,\r\n    \"description\": \"sdhbvsd dvbsvb evlhblev weybvebv ybry\",\r\n    \"location\":{\r\n        \"lon\": 45.128\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place create admin fail Location invalid lat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"place1\",\r\n    \"radius\": 1000,\r\n    \"description\": \"sdhbvsd dvbsvb evlhblev weybvebv ybry\",\r\n    \"location\":{\r\n        \"lat\": 91.0,\r\n        \"lon\": 45.128\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place create admin fail Location without lon",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"place1\",\r\n    \"radius\": 1000,\r\n    \"description\": \"sdhbvsd dvbsvb evlhblev weybvebv ybry\",\r\n    \"location\":{\r\n        \"lat\": 50.0\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place create admin fail Location invalid lon",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"place1\",\r\n    \"radius\": 1000,\r\n    \"description\": \"sdhbvsd dvbsvb evlhblev weybvebv ybry\",\r\n    \"location\":{\r\n        \"lat\": 50.0,\r\n        \"lon\": -180.00001\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Places",
+			"item": [
+				{
+					"name": "Place 1 create by admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test place 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id, '\"id\" must be \"1\"').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test place 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name, '\"name\" must be \"place1\"').to.eql('place1');\r",
+									"});\r",
+									"pm.test(\"Test place 'description' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('description');\r",
+									"    pm.expect(jsonData.description, '\"description\" must be \"sdhbvsd dvbsvb evlhblev weybvebv ybry\"').to.eql('sdhbvsd dvbsvb evlhblev weybvebv ybry');\r",
+									"});\r",
+									"pm.test(\"Test place 'radius' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('radius');\r",
+									"    pm.expect(jsonData.radius, '\"radius\" must be 300').to.eql(300);\r",
+									"});\r",
+									"pm.test(\"Test place 'status' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('status');\r",
+									"    pm.expect(jsonData.status, '\"status\" must be \"PUBLISHED\"').to.eql('PUBLISHED');\r",
+									"});\r",
+									"pm.test(\"Test place 'location.lat' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('location');\r",
+									"    pm.expect(jsonData.location).to.have.property('lat');\r",
+									"    pm.expect(jsonData.location.lat, '\"location.lat\"  must be \"55.754244\"').to.eql(55.754244);\r",
+									"});\r",
+									"pm.test(\"Test place 'location.lon' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('location');\r",
+									"    pm.expect(jsonData.location).to.have.property('lon');\r",
+									"    pm.expect(jsonData.location.lon, '\"location.lon\"  must be \"37.620408\"').to.eql(37.620408);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"place1\",\r\n    \"radius\": 300,\r\n    \"description\": \"sdhbvsd dvbsvb evlhblev weybvebv ybry\",\r\n    \"location\":{\r\n        \"lat\": 55.754244,\r\n        \"lon\": 37.620408\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place 1 create fail duplacate name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([409]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Place1\",\r\n    \"radius\": 500,\r\n    \"description\": \"dfvsdfvsdf esfsfb sfbsefb efbdf\",\r\n    \"location\":{\r\n        \"lat\": 55.7244,\r\n        \"lon\": 37.6408\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place 2 create by user1 fail no user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([409]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"place2\",\r\n    \"radius\": 300,\r\n    \"description\": \"kfjnbdf lsjfnsblkjdfnb ljksnblkj\",\r\n    \"location\":{\r\n        \"lat\": 55.751986,\r\n        \"lon\": 37.617794\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/136/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"136",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test user 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id, '\"id\" must be \"136\"').to.eql(136);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"user1\",\r\n    \"email\": \"user1@e.mail\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place 3 create by user1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test place 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id, '\"id\" must be \"3\"').to.eql(3);\r",
+									"});\r",
+									"pm.test(\"Test place 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name, '\"name\" must be \"place3\"').to.eql('place3');\r",
+									"});\r",
+									"pm.test(\"Test place 'description' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('description');\r",
+									"    pm.expect(jsonData.description, '\"kfjnbdf lsjfnsblkjdfnb ljksnblkj\"').to.eql('kfjnbdf lsjfnsblkjdfnb ljksnblkj');\r",
+									"});\r",
+									"pm.test(\"Test place 'radius' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('radius');\r",
+									"    pm.expect(jsonData.radius, '\"radius\" must be 300').to.eql(300);\r",
+									"});\r",
+									"pm.test(\"Test place 'status' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('status');\r",
+									"    pm.expect(jsonData.status, '\"status\" must be \"PENDING\"').to.eql('PENDING');\r",
+									"});\r",
+									"pm.test(\"Test place 'location.lat' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('location');\r",
+									"    pm.expect(jsonData.location).to.have.property('lat');\r",
+									"    pm.expect(jsonData.location.lat, '\"location.lat\"  must be \"55.751986\"').to.eql(55.751986);\r",
+									"});\r",
+									"pm.test(\"Test place 'location.lon' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('location');\r",
+									"    pm.expect(jsonData.location).to.have.property('lon');\r",
+									"    pm.expect(jsonData.location.lon, '\"location.lon\"  must be \"37.617794\"').to.eql(37.617794);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"place3\",\r\n    \"radius\": 300,\r\n    \"description\": \"kfjnbdf lsjfnsblkjdfnb ljksnblkj\",\r\n    \"location\":{\r\n        \"lat\": 55.751986,\r\n        \"lon\": 37.617794\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/136/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"136",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Places get by area show PUBLISHED only",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"pm.test(\"Test list places response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length, 'List length must be 1').to.eql(1);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test place[0] 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('id');\r",
+									"    pm.expect(jsonData[0].id, '\"id\" must be 1').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test place[0] 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('name');\r",
+									"    pm.expect(jsonData[0].name, '\"name\" must be \"place1\"').to.eql('place1');\r",
+									"});\r",
+									"pm.test(\"Test place[0] 'location' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('location');\r",
+									"    pm.expect(jsonData[0].location).to.have.property('lat');\r",
+									"    pm.expect(jsonData[0].location).to.have.property('lon');\r",
+									"    pm.expect(jsonData[0].location.lat, '\"location\" contain \"lat\"').not.eq(undefined);;\r",
+									"    pm.expect(jsonData[0].location.lat, '\"location\" contain \"lon\"').not.eq(undefined);;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/places?lat=55.751986&lon=37.617794&searchRadius=5000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"places"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "55.751986"
+								},
+								{
+									"key": "lon",
+									"value": "37.617794"
+								},
+								{
+									"key": "searchRadius",
+									"value": "5000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place 1 get for user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test place 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id, '\"id\" must be \"1\"').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test place 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name, '\"name\" must be \"place1\"').to.eql('place1');\r",
+									"});\r",
+									"pm.test(\"Test place 'description' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('description');\r",
+									"    pm.expect(jsonData.description, '\"description\" must be \"sdhbvsd dvbsvb evlhblev weybvebv ybry\"').to.eql('sdhbvsd dvbsvb evlhblev weybvebv ybry');\r",
+									"});\r",
+									"pm.test(\"Test place 'radius' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('radius');\r",
+									"    pm.expect(jsonData.radius, '\"radius\" must be 300').to.eql(300);\r",
+									"});\r",
+									"pm.test(\"Test place 'status' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('status');\r",
+									"    pm.expect(jsonData.status, '\"status\" must be \"PUBLISHED\"').to.eql('PUBLISHED');\r",
+									"});\r",
+									"pm.test(\"Test place 'location.lat' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('location');\r",
+									"    pm.expect(jsonData.location).to.have.property('lat');\r",
+									"    pm.expect(jsonData.location.lat, '\"location.lat\"  must be \"55.754244\"').to.eql(55.754244);\r",
+									"});\r",
+									"pm.test(\"Test place 'location.lon' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('location');\r",
+									"    pm.expect(jsonData.location).to.have.property('lon');\r",
+									"    pm.expect(jsonData.location.lon, '\"location.lon\"  must be \"37.620408\"').to.eql(37.620408);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/places/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"places",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place 3 not published get fail for user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([404]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/places/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"places",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place 3 not published available for Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test place 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id, '\"id\" must be \"3\"').to.eql(3);\r",
+									"});\r",
+									"pm.test(\"Test place 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name, '\"name\" must be \"place3\"').to.eql('place3');\r",
+									"});\r",
+									"pm.test(\"Test place 'description' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('description');\r",
+									"    pm.expect(jsonData.description, '\"kfjnbdf lsjfnsblkjdfnb ljksnblkj\"').to.eql('kfjnbdf lsjfnsblkjdfnb ljksnblkj');\r",
+									"});\r",
+									"pm.test(\"Test place 'radius' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('radius');\r",
+									"    pm.expect(jsonData.radius, '\"radius\" must be 300').to.eql(300);\r",
+									"});\r",
+									"pm.test(\"Test place 'status' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('status');\r",
+									"    pm.expect(jsonData.status, '\"status\" must be \"PENDING\"').to.eql('PENDING');\r",
+									"});\r",
+									"pm.test(\"Test place 'location.lat' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('location');\r",
+									"    pm.expect(jsonData.location).to.have.property('lat');\r",
+									"    pm.expect(jsonData.location.lat, '\"location.lat\"  must be \"55.751986\"').to.eql(55.751986);\r",
+									"});\r",
+									"pm.test(\"Test place 'location.lon' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('location');\r",
+									"    pm.expect(jsonData.location).to.have.property('lon');\r",
+									"    pm.expect(jsonData.location.lon, '\"location.lon\"  must be \"37.617794\"').to.eql(37.617794);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/places/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place 4 create by admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"new\",\r\n    \"radius\": 500,\r\n    \"description\": \"dlbjn djfbndkf dlkjfnbs slkjfb\",\r\n    \"location\":{\r\n        \"lat\": 55.729137,\r\n        \"lon\": 37.601148\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Places get pageable",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"pm.test(\"Test list places response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length, 'List length must be 2').to.eql(2);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test place[0] 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('id');\r",
+									"    pm.expect(jsonData[0].id, '\"id\" must be 3').to.eql(3);\r",
+									"});\r",
+									"pm.test(\"Test place[1] 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[1]).to.have.property('id');\r",
+									"    pm.expect(jsonData[1].id, '\"id\" must be 4').to.eql(4);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/places?from=1&size=2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Places get filtred and sorted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"pm.test(\"Test list places response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length, 'List length must be 2').to.eql(2);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test place[0] 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('id');\r",
+									"    pm.expect(jsonData[0].id, '\"id\" must be 3').to.eql(3);\r",
+									"});\r",
+									"pm.test(\"Test place[1] 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[1]).to.have.property('id');\r",
+									"    pm.expect(jsonData[1].id, '\"id\" must be 1').to.eql(1);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/places?from=0&size=100&name=Place&orderBy=NAME_DESC",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "100"
+								},
+								{
+									"key": "name",
+									"value": "Place"
+								},
+								{
+									"key": "orderBy",
+									"value": "NAME_DESC"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place 3 update status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test place 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id, '\"id\" must be \"3\"').to.eql(3);\r",
+									"});\r",
+									"pm.test(\"Test place 'status' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('status');\r",
+									"    pm.expect(jsonData.status, '\"status\" must be \"PUBLISHED\"').to.eql('PUBLISHED');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"PUBLISHED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Category create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);\r",
+									"});\r",
+									"pm.test(\"Test category 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id, '\"id\" must be \"121\"').to.eql(121);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"category 2382874\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Event 1 near from the place3 create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);\r",
+									"});\r",
+									"pm.test(\"Test event 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id, '\"id\" must be \"106\"').to.eql(106);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"event1\",\r\n    \"annotation\": \"dfvdkjfblkj sdfkbvksjd slkdfvbj sdfhvb\",\r\n    \"category\": 121,\r\n    \"description\": \"dfjvbsdklfj skjdfnvks sdkhvbkjs kjhbvkjrh\",\r\n    \"eventDate\": \"2100-01-01 00:00:00\",\r\n    \"location\": {\r\n        \"lat\": 55.751589,\r\n        \"lon\": 37.615573\r\n    }\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/1/events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Event 1 near from the place3 publish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"stateAction\": \"PUBLISH_EVENT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/events/106",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"events",
+								"106"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "No events near from the Place 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"pm.test(\"Test list events response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length, 'List length must be 0').to.eql(0);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/events?placeId=1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events"
+							],
+							"query": [
+								{
+									"key": "placeId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Event 1 near from the Place 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"pm.test(\"Test list events response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length, 'List length must be 1').to.eql(1);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test event[0] 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('id');\r",
+									"    pm.expect(jsonData[0].id, '\"id\" must be 106').to.eql(106);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/events?placeId=3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events"
+							],
+							"query": [
+								{
+									"key": "placeId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Places hide all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newStatus\": \"HIDDEN\",\r\n    \"placeIds\": [1,3,4]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/places",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Places get published none",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"pm.test(\"Test list places response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length, 'List length must be 0').to.eql(0);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/places?statuses=PUBLISHED",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places"
+							],
+							"query": [
+								{
+									"key": "statuses",
+									"value": "PUBLISHED"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Place 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([204]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/places/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place 3 not found for admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([404]);\r",
+									"});\r",
+									"pm.test(\"Has response body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/places/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"places",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

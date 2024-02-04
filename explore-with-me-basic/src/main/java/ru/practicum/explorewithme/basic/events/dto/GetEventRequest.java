@@ -21,4 +21,6 @@ public class GetEventRequest {
     private final Boolean paid;
     private final Boolean onlyAvailable;
     private final EventSort sort;
+
+    private final Long placeId;
 }

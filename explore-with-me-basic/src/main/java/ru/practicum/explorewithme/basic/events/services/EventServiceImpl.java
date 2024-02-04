@@ -2,7 +2,6 @@ package ru.practicum.explorewithme.basic.events.services;
 
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.Expressions;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.lang.NonNull;
@@ -20,6 +19,7 @@ import ru.practicum.explorewithme.basic.events.dto.UpdateEventUserRequest;
 import ru.practicum.explorewithme.basic.events.enums.EventSort;
 import ru.practicum.explorewithme.basic.events.enums.EventState;
 import ru.practicum.explorewithme.basic.events.enums.StateAction;
+import ru.practicum.explorewithme.basic.events.mappers.EventFilterMapper;
 import ru.practicum.explorewithme.basic.events.mappers.EventMapper;
 import ru.practicum.explorewithme.basic.events.models.Event;
 import ru.practicum.explorewithme.basic.events.models.QEvent;
@@ -52,6 +52,7 @@ public class EventServiceImpl implements EventService {
     private final EventMapper eventMapper;
     private final ParticipationMapper participationMapper;
     private final StatsClientAdapter statsClientAdapter;
+    private final EventFilterMapper filterMapper;
 
     private EventRequestStatusUpdateResult rejectParticipation(List<Participation> participation) {
         List<Participation> saved = participationRepository.saveAll(
@@ -172,12 +173,7 @@ public class EventServiceImpl implements EventService {
     @Override
     @NonNull
     public List<Event> getEventsAdmin(@NonNull GetEventRequest req, int from, int size) {
-        BooleanExpression filter = Expressions.TRUE.isTrue();
-        filter = req.getUsers() != null ? filter.and(QEvent.event.initiator.id.in(req.getUsers())) : filter;
-        filter = req.getStates() != null ? filter.and(QEvent.event.state.in(req.getStates())) : filter;
-        filter = req.getCategories() != null ? filter.and(QEvent.event.category.id.in(req.getCategories())) : filter;
-        filter = req.getRangeStart() != null ? filter.and(QEvent.event.eventDate.goe(req.getRangeStart())) : filter;
-        filter = req.getRangeEnd() != null ? filter.and(QEvent.event.eventDate.loe(req.getRangeEnd())) : filter;
+        BooleanExpression filter = filterMapper.mapToEventFilter(req);
 
         return eventRepository.findByWithOffsetAndLimitFetch(filter, from, size);
     }
@@ -198,21 +194,9 @@ public class EventServiceImpl implements EventService {
     @NonNull
     @Override
     public List<Event> getEventsPublic(@NonNull GetEventRequest req, int from, int size) {
-        BooleanExpression filter = Expressions.TRUE.isTrue();
-        filter = req.getText() != null ? filter.and(
-                QEvent.event.annotation.lower().like(req.getText())
-                        .or(QEvent.event.description.lower().like(req.getText())))
-                : filter;
-        filter = req.getPaid() != null ? filter.and(QEvent.event.paid.eq(req.getPaid())) : filter;
-        filter = req.getCategories() != null ? filter.and(QEvent.event.category.id.in(req.getCategories())) : filter;
-        filter = req.getRangeStart() != null ? filter.and(QEvent.event.eventDate.goe(req.getRangeStart())) : filter;
-        filter = req.getRangeEnd() != null ? filter.and(QEvent.event.eventDate.loe(req.getRangeEnd())) : filter;
 
-        if (req.getOnlyAvailable() != null && req.getOnlyAvailable()) {
-            filter = filter.and(
-                    QEvent.event.participantLimit.eq(0)
-                            .or(QEvent.event.participantLimit.subtract(QEvent.event.confirmedRequests).gt(0)));
-        }
+        BooleanExpression filter = filterMapper.mapToEventFilter(req);
+
         OrderSpecifier<LocalDateTime> orderSpecifier = null;
         if (req.getSort() == EventSort.EVENT_DATE) {
             orderSpecifier = QEvent.event.eventDate.desc();
