@@ -11,9 +11,9 @@ Java 11, Spring Boot v2.7.14(Web, Validation), JPA, PostgreSQL, Maven, MapStruct
 * Сбор статистики.
 
 Приложение имеет микросервисную архитектуру:
-* **explore-with-me-basic**: реализует бизнес-логику приложения.
+* **explore-with-me-basic**: реализует бизнес-логику приложения;
   [Спецификация...](ewm-main-service-spec.json)
-* **statistics-service**: обеспечивает сбор статистики об использовании приложения;
+* **statistics-service**: обеспечивает сбор статистики об использовании приложения.
   [Спецификация...](ewm-stats-service-spec.json)
 
 API сервиса **explore-with-me-basic** разделено на три части:
