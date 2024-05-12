@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
     <modules>
-        <module>explore-with-me-basic</module>
+        <module>explore-with-me-basic/basic-service</module>
         <module>explore-with-me-statistics</module>
 		<module>explore-with-me-statistics/statistics-service</module>
 		<module>explore-with-me-statistics/statistics-lib-dto</module>
@@ -11,6 +11,7 @@
         <module>exception-handler-spring-boot-starter</module>
         <module>explore-with-me-auth</module>
 		<module>explore-with-me-gateway</module>
+		<module>explore-with-me-basic</module>
 	</modules>
 
     <parent>
