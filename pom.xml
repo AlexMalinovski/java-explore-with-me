@@ -10,7 +10,8 @@
 		<module>explore-with-me-statistics/statistics-client</module>
         <module>exception-handler-spring-boot-starter</module>
         <module>explore-with-me-auth</module>
-    </modules>
+		<module>explore-with-me-gateway</module>
+	</modules>
 
     <parent>
 		<groupId>org.springframework.boot</groupId>
