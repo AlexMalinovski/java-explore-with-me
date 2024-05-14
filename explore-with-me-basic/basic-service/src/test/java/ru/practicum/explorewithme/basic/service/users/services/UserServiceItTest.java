@@ -16,7 +16,7 @@ class UserServiceItTest {
     private UserService userService;
 
     @Test
-    @Sql("/delete-all.sql")
+    @Sql({"/delete-all.sql", "/add-roles.sql"})
     void createUser() {
         var actual = userService.createUser(User.builder()
                 .name("name")

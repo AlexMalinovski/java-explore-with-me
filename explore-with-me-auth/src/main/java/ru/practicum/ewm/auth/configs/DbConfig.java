@@ -33,4 +33,25 @@ public class DbConfig {
                     .build());
         };
     }
+
+    @Bean
+    @Profile({"!dev", "!test"})
+    ApplicationRunner initDbProd(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+        return args -> {
+
+            Role roleUser = roleRepository.findOneByName("ROLE_USER")
+                    .orElseGet(() -> roleRepository.save(new Role(null, "ROLE_USER")));
+            Role roleAdmin = roleRepository.findOneByName("ROLE_ADMIN")
+                    .orElseGet(() -> roleRepository.save(new Role(null, "ROLE_ADMIN")));
+
+            if (!userRepository.existsByEmail("e@mail.ru")) {
+                userRepository.save(User.builder()
+                        .name("admin")
+                        .email("e@mail.ru")
+                        .roles(Set.of(roleAdmin, roleUser))
+                        .password(passwordEncoder.encode("admin"))
+                        .build());
+            }
+        };
+    }
 }

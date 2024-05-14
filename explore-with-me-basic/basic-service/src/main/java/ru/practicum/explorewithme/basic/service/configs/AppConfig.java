@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import ru.practicum.explorewithme.basic.service.common.exceptions.ErrorData;
 import ru.practicum.explorewithme.basic.service.common.exceptions.EwmExceptionHandler;
@@ -36,5 +38,10 @@ public class AppConfig {
                 new AbstractMap.SimpleEntry<>("places_name_unique_idx", ErrorData.create("Place name must be unique.", HttpStatus.CONFLICT))
         );
         return new EwmExceptionHandler(dbConstraintsErr);
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(8);
     }
 }
