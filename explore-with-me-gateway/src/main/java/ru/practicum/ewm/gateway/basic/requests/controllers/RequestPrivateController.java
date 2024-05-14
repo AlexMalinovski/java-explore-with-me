@@ -18,7 +18,7 @@ import java.security.Principal;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/users/{userId}/requests")
+@RequestMapping("/users/requests")
 @Validated
 public class RequestPrivateController {
 

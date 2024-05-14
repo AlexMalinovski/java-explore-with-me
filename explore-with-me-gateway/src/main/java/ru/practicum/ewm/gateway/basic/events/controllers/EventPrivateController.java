@@ -34,7 +34,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/users/{userId}/events")
+@RequestMapping("/users/events")
 @Validated
 public class EventPrivateController {
 

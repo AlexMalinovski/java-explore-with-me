@@ -1,6 +1,7 @@
 package ru.practicum.ewm.gateway.basic.categories.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,6 @@ public class CategoriesPublicController {
     public Object getCategories(
             @RequestParam(required = false, defaultValue = "0") int from,
             @RequestParam(required = false, defaultValue = "10") int size) {
-
 
         return basicServiceRestTemplate.getForEntity(
                 "/categories?from={from}&size={size}", CategoryDto[].class, from, size);
