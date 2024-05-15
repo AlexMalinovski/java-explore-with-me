@@ -1,7 +1,7 @@
 # ExploreWithMe (REST API)
 Афиша мероприятий
 ## Технологии и инструменты:
-Java 11, Spring Boot v2.7.14(Web, Validation), JPA, PostgreSQL, Maven, MapStruct, QueryDsl, JUnit, Mockito, Postman, Git, Микросервисная архитектура, Docker.
+Java 11, Spring Boot v2.7.5 (Web, Validation, Security, OAuth2, JWT), JPA, PostgreSQL, Maven, MapStruct, QueryDsl, JUnit, Mockito, Postman, Git, Микросервисная архитектура, Docker.
 ## Описание и Функциональные возможности
 Пользователи могут предложить какое-либо событие и собрать компанию для участия в нём.
 Также реализовано:
@@ -11,7 +11,9 @@ Java 11, Spring Boot v2.7.14(Web, Validation), JPA, PostgreSQL, Maven, MapStruct
 * Сбор статистики.
 
 Приложение имеет микросервисную архитектуру:
-* **explore-with-me-basic**: реализует бизнес-логику приложения;
+* **explore-with-me-auth**: Сервер OAuth2 авторизации пользователей с поддержкой входа по Yandex Id или логину/паролю;
+* **explore-with-me-gateway**: Защищённый шлюз. Так-же выполняет формальную валидацию входящих запросов;
+* **basic-service**: реализует бизнес-логику приложения;
   [Спецификация...](ewm-main-service-spec.json)
 * **statistics-service**: обеспечивает сбор статистики об использовании приложения.
   [Спецификация...](ewm-stats-service-spec.json)
@@ -20,7 +22,7 @@ API сервиса **explore-with-me-basic** разделено на три ча
 1. Публичная - доступна без регистрации любому посетителю;
 2. Закрытая - доступна только авторизованным пользователям;
 3. Административная - для администраторов сервиса.
-  
+
 Микросервисы взаимодействуют посредством REST.
 ## Инструкция по развёртыванию и системные требования
 Min CPU/Core: 1/1, RAM:1Gb, Docker.
