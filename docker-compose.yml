@@ -1,11 +1,9 @@
-version: '3.1'
+version: '3.8'
 services:
   stats-server:
     build: ./explore-with-me-statistics/statistics-service
     image: statistics-service
     container_name: statistics-service
-    ports:
-      - "9090:9090"
     depends_on:
       - stats-db
     environment:
@@ -18,8 +16,6 @@ services:
   stats-db:
     image: postgres:14-alpine
     container_name: stats-db
-    ports:
-      - "6541:5432"
     environment:
       - TZ=Europe/Moscow
       - POSTGRES_DB=stats
@@ -27,11 +23,9 @@ services:
       - POSTGRES_PASSWORD=root
 
   ewm-service:
-    build: ./explore-with-me-basic
+    build: ./explore-with-me-basic/basic-service
     image: ewm-service
     container_name: ewm-service
-    ports:
-      - "8080:8080"
     depends_on:
       - ewm-db
       - stats-server
@@ -48,10 +42,47 @@ services:
     build: ./explore-with-me-basic/DockerPg
     image: ewm-db
     container_name: ewm-db
-    ports:
-      - "6542:5432"
     environment:
       - TZ=Europe/Moscow
       - POSTGRES_DB=ewm
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
+
+  sso-service:
+    build: ./explore-with-me-auth
+    image: sso-service
+    container_name: sso-service
+    ports:
+      - "9000:9000"
+    depends_on:
+      - ewm-db
+      - ewm-service
+    environment:
+      - EWM_DB_HOST=ewm-db
+      - EWM_DB_PORT=5432
+      - EWM_DB_NAME=ewm
+      - EWM_POSTGRES_USER=root
+      - EWM_POSTGRES_PASSWORD=root
+      - SSO_SRV_PROTO=http
+      - SSO_SRV_HOST=localhost
+      - SSO_SRV_PORT=9000
+      - YANDEX_CLIENT_ID=your_id
+      - YANDEX_CLIENT_SECRET=your_secret
+      - EWM_CLIENT_REDIRECT_URI=http://127.0.0.1:9090/login/oauth2/code/ewm-client
+
+  gateway-service:
+    build: ./explore-with-me-gateway
+    image: ewm-gateway-service
+    container_name: ewm-gateway-service
+    ports:
+      - "8443:8443"
+    depends_on:
+      - ewm-service
+      - sso-service
+    environment:
+      - BASIC_SRV_HOST=ewm-service
+      - BASIC_SRV_PORT=8080
+      - SSO_SRV_PROTO=http
+      - SSO_SRV_HOST=sso-service
+      - SSO_SRV_PORT=9000
+      - SSO_JWKS_PATH=/oauth2/jwks

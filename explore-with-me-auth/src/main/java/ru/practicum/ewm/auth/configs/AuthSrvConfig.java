@@ -5,6 +5,7 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -45,6 +46,9 @@ import java.util.stream.Collectors;
 @Configuration
 public class AuthSrvConfig {
 
+    @Value("${ewm-client.uri.login-redirect}")
+    private String ewmClientRedirectUri;
+
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -56,7 +60,8 @@ public class AuthSrvConfig {
                         exceptions.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))
                 )
                 // Accept access tokens for User Info and/or Client Registration
-                .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()));
+                .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()))
+                .formLogin(Customizer.withDefaults());
         return http.build();
     }
 
@@ -70,7 +75,7 @@ public class AuthSrvConfig {
                                 ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                         .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                         .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-                        .redirectUri("http://127.0.0.1:9090/login/oauth2/code/ewm-client")
+                        .redirectUri(ewmClientRedirectUri)
                         .scope(OidcScopes.OPENID)
                         .clientSettings(ClientSettings.builder().requireAuthorizationConsent(false).build())
                         .build();

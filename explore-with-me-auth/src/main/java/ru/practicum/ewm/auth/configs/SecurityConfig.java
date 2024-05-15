@@ -23,6 +23,7 @@ import ru.practicum.ewm.auth.services.login.FederatedIdentityAuthenticationSucce
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -63,7 +64,7 @@ public class SecurityConfig {
                         .email(oAuth2User.getName())
                         .name(oAuth2User.getAttribute("name"))
                         .roles(roles)
-                        .password(passwordEncoder().encode("12345")) // TODO сгенерировать случайный пароль и отправить письмо для его замены
+                        .password(passwordEncoder().encode(UUID.randomUUID().toString())) // TODO сгенерировать случайный пароль и отправить письмо для его замены
                         .build());
             }
         });
