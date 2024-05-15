@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.lang.NonNull;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -82,6 +84,13 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         problemDetail.setProperty("errors", errors);
         log.warn(ex.getMessage());
         return handleExceptionInternal(ex, problemDetail, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<Object> handleHttpClientErrorException(
+            HttpClientErrorException ex, WebRequest request) {
+        HttpHeaders headers = ex.getResponseHeaders() == null ? new HttpHeaders() : ex.getResponseHeaders();
+        return handleExceptionInternal(ex, ex.getResponseBodyAsString(), headers, ex.getStatusCode(), request);
     }
 
     @ExceptionHandler
